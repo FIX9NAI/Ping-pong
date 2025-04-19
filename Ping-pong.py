@@ -1,9 +1,5 @@
 from pygame import *
 
-import random
-
-from random import randint
-
 class GameSprite(sprite.Sprite):
 
     def __init__(self, player_image, player_x, player_y, player_speed):
@@ -22,31 +18,42 @@ class Player(GameSprite):
     def __init__(self, image_path, x, y, speed):
         super().__init__(image_path, x, y, speed)
         self.speed = speed
-        self.last_shot = 0  # время последнего выстрела
 
-    def update(self):
+    def update_l(self):
         keys = key.get_pressed()
-        if keys[K_LEFT] and self.rect.x > 0:
-            self.rect.x -= self.speed
-        if keys[K_RIGHT] and self.rect.x < 1190 - self.rect.width:
-            self.rect.x += self.speed
-        if keys[K_SPACE]:
-            player.fire()
+        if keys[K_w] and self.rect.y > 0:
+            self.rect.y -= self.speed
+        if keys[K_s] and self.rect.y < 890 - self.rect.height:
+            self.rect.y += self.speed
+
+    def update_r(self):
+        keys = key.get_pressed()
+        if keys[K_LEFT] and self.rect.y > 0:
+            self.rect.y -= self.speed
+        if keys[K_RIGHT] and self.rect.y < 890 - self.rect.height:
+            self.rect.y += self.speed
 
 back = (0, 100, 0)
-win_widht = 1600
+win_width = 1600
 win_height = 900
-window = display.set_mode((win_widht, win_height))
+window = display.set_mode((win_width, win_height))
 window.fill(back)
 
 clock = time.Clock()
 FPS = 90
 game = True
 
+player = Player('rocket.png', 10, 450, 10)
+
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+    
+    player.reset()
 
+    player.update_l()
     display.update()
     clock.tick(FPS)
+
+display.update()
