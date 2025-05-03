@@ -10,4 +10,10 @@ Primitive 2D game for playing with friend (if any), where two players control th
 - Find the .exe file
 - Open and enjoy the game
 
-# Good game, author FIX9NAI
+# Author
+FIX9NAI
+
+# License
+This project is licensed Creative Commons Zero v1.0 Universal
+
+# Enjoy the game! 🏓
